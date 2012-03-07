@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VcbNetbanking</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="bd">
+
+
+
+<div id="main">
+    <table align="center">
+            <tr>
+              <td colspan="2">
+                <div id="bcmb">
+                </div>
+              </td>
+            </tr>
+        <tr>
+            <td colspan="2">
+                <div id="header">
+                    <!-- The header for VCB Netbanking -->
+                    <table width="100%" style="background: rgb(21, 21, 21);">
+                      <tr>
+                        <td>
+                          <div id="vcb_banner">
+                             <span style="font-size:25pt; font-weight:bold; padding-left:10px; ">
+                              Vancouver Cooperative Bank 
+                            </span>
+                          </div>
+                         
+                        </td>
+                      </tr>
+                      <tr>        
+                        <td align="left">
+                          <span style="font-size:15pt; font-weight:normal; color: rgb(80, 158, 79);">
+                            NetBanking
+                          </span>
+                        </td>
+                      </tr>
+                    </table>
+                  <!-- end header-->
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <div id="navigation">
+                    <!-- The navigation for VCB Netbanking -->
+                    <table width="100%">
+                      <tr>
+                        <td>
+
+                          <% if current_user %>
+                             
+                          <div>You're logged in as: <%= current_user.username %></div>
+                              
+                            <% end %>
+
+                        </td>
+                        <td align="right" style="color:rgb(21, 21, 21); font-size:14px;">
+                           
+                            
+                            <% if current_user %>
+                              <%= link_to "Edit Profile", edit_user_path(current_user) %> |
+                              <%= link_to "Logout", user_session_path(current_user),  method: :delete %>                              
+
+                            <% else %>
+                              <%= link_to "Register", new_user_path %> |
+                              <%= link_to "Login", new_user_session_path %>
+                            <% end %>
+
+
+                        </td>
+                      </tr>                     
+                    </table>
+                    <!-- end navigation -->
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <div id="menu">
+                    <!-- The menu for VCB Netbanking -->
+                      <table width="100%">
+                      <tr>
+                        <td>
+                          <span style="color:rgb(21, 21, 21); font-size:15px; font-weight:bold;">Quick Links</span>
+                          <hr/>
+                        </td>                        
+                      </tr> 
+                      <tr>
+                        <td style="color:rgb(21, 21, 21);">
+                          <span style="color:rgb(21, 21, 21); font-size:13px; font-weight:normal;">
+                                                
+                          <%= link_to "Home", root_url %> <br/>
+                          <% if current_user %>
+                            <%= link_to "Add account operation", new_bank_account_operation_path %> <br/>
+                            <%= link_to "View bank accounts", bank_accounts_path %> <br/>
+                            <%= link_to "View account operations", bank_account_operations_path %> <br/>
+                            
+                          <% else %>
+                          <br>
+                          
+                              <%= link_to "Staff", new_bank_account_path %>
+                              
+                          <% end %>
+                        </span>                        
+                        
+                        
+                        </td>                        
+                      </tr> 
+                    </table>
+                    <!-- end menu -->
+                </div>
+            </td>
+            <td valign="top">
+                <div id="content">
+                    <!-- The content for VCB Netbanking -->
+                    
+                    <%= yield %>
+                    
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div id="footer">
+                    <!-- And finally the footer for VCB Netbanking -->
+          Copyright 2012 VCB NetBanking
+                    
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

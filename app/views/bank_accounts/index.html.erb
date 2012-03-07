@@ -1,0 +1,67 @@
+<h1>Listing Bank Accounts</h1>
+
+<table border = '0' padding="0" cellspacing="0" style="border:solid rgb(21, 21, 21) 1px ;padding:0px; BORDER-BOTTOM: #000000 0px solid; COLOR:rgb(21,21,21);" >
+  
+  <tr>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #ffffff 0px solid;  BACKGROUND: #F5F5F5; COLOR:rgb(21,21,21); FONT-WEIGHT: bold; FONT-SIZE: 9pt; '> Bank Account Number</td>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: rgb(21,21,21) 1px solid;  BACKGROUND: #F5F5F5; COLOR:rgb(21,21,21); FONT-WEIGHT: bold; FONT-SIZE: 9pt;'>Balance</td>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: rgb(21,21,21) 1px solid;  BACKGROUND: #F5F5F5; COLOR:rgb(21,21,21); FONT-WEIGHT: bold; FONT-SIZE: 9pt;'>Creation Date</td>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: rgb(21,21,21) 1px solid;  BACKGROUND: #F5F5F5; COLOR:rgb(21,21,21); FONT-WEIGHT: bold; FONT-SIZE: 9pt;'>
+	    Customer
+    </td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: rgb(21,21,21) 1px solid; BACKGROUND: #F5F5F5; COLOR:rgb(21,21,21); FONT-WEIGHT: bold; FONT-SIZE: 9pt;'>
+    <% if current_user %>
+    <td colspan="1" style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: rgb(21,21,21) 1px solid;  BACKGROUND: #F5F5F5; COLOR:rgb(21,21,21); FONT-WEIGHT: bold; FONT-SIZE: 9pt;'>Actions</td>
+    <%  else %>
+    <td colspan="3" style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: rgb(21,21,21) 1px solid;  BACKGROUND: #F5F5F5; COLOR:rgb(21,21,21); FONT-WEIGHT: bold; FONT-SIZE: 9pt;'>Actions</td>
+    <% end %>
+  </tr>
+
+<% @bank_accounts.each do |bank_account| %>
+
+ <% if current_user %>
+  <% if bank_account.user_id == current_user.id %>
+  
+  <tr>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 0px solid; COLOR:rgb(21, 21, 21);'> <%= bank_account.bankAccountNo %></td>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR: rgb(21, 21, 21)'>$ <%= bank_account.balance %></td>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR: rgb(21, 21, 21)'><%= bank_account.creationDate %></td>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR: rgb(21, 21, 21)'>
+	    <% @user = User.find(bank_account.user_id) %>
+      <%= @user.username %>
+    </td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR:rgb(21, 21, 21)'>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR:rgb(21, 21, 21)'><%= link_to 'Show', bank_account %></td>
+    
+  </tr>
+  
+  <% end %>
+
+
+
+ <% else %>
+
+  <tr>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 0px solid; COLOR:rgb(21, 21, 21);'> <%= bank_account.bankAccountNo %></td>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR: rgb(21, 21, 21)'>$ <%= bank_account.balance %></td>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR: rgb(21, 21, 21)'><%= bank_account.creationDate %></td>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR: rgb(21, 21, 21)'>
+	    <% @user = User.find(bank_account.user_id) %>
+      <%= @user.username %>
+    </td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR:rgb(21, 21, 21)'>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR:rgb(21, 21, 21)'><%= link_to 'Show', bank_account %></td>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR:rgb(21, 21, 21)'><%= link_to 'Edit', edit_bank_account_path(bank_account) %></td>
+    <td style='BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR:rgb(21, 21, 21)'><%= link_to 'Destroy', bank_account, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+
+ <% end %>
+
+
+  
+<% end %>
+</table>
+
+<br />
+<% if current_user %>
+
+<% else %>
+ <%= link_to 'Add Bank Account', new_bank_account_path %> | <%= link_to 'View Customers Bank account Operations', bank_account_operations_path  %>
+<% end %>

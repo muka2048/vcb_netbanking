@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bankAccountNo: MyString
+  balance: 9.99
+  creationDate: 2012-03-05
+  user: 
+
+two:
+  bankAccountNo: MyString
+  balance: 9.99
+  creationDate: 2012-03-05
+  user: 

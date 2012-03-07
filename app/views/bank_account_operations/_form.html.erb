@@ -1,0 +1,59 @@
+<%= form_for(@bank_account_operation) do |f| %>
+  <% if @bank_account_operation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bank_account_operation.errors.count, "error") %> prohibited this Bank account operation from being saved:</h2>
+
+      <ul>
+      <% @bank_account_operation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :issueTime %><br />
+    <%= f.datetime_select :issueTime %>
+  </div>
+  <div class="field">
+    <%= f.label :operationType %><br />
+    
+   
+    
+    <input id="operationType_Credit" name="bank_account_operation[operationType]" type="radio" value="Deposit" />
+    <label for="operationType_Credit">Deposit</label>
+    
+    <input id="operationType_Debit" name="bank_account_operation[operationType]" type="radio" value="Withdraw" />
+    <label for="operationType_Debit">Withdraw</label>
+    
+    
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %> $
+  </div>
+  <div class="field">
+    <%= f.label :bank_account %><br />
+    
+    
+    <select id="bank_account_operation_bank_account_id" name="bank_account_operation[bank_account_id]">
+    <% if @bank_account_operation.bank_account_id == 0 or @bank_account_operation.bank_account_id == nil %>
+      <option value="" selected="selected">- Please the Bank account -</option>
+    <% end%>
+    <% @bank_accounts = BankAccount.find(:all, :conditions => ['user_id=?', current_user.id] )
+    @bank_accounts.each do |bank_account| %>
+    <option value="<%= bank_account.id %>" 
+      <% if @bank_account_operation.bank_account_id == bank_account.id %> 
+        selected="selected"
+      <% end %>
+    >
+    <%= bank_account.bankAccountNo %>
+  </option>
+  <% end %>
+    </select>
+    
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

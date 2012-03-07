@@ -1,0 +1,48 @@
+<%= form_for(@bank_account) do |f| %>
+  <% if @bank_account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bank_account.errors.count, "error") %> prohibited this Bank Account from being saved:</h2>
+
+      <ul>
+      <% @bank_account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bank_Account_Number %><br />
+    <%= f.text_field :bankAccountNo %>
+  </div>
+  <div class="field">
+    <%= f.label :balance %><br />
+   <%= f.text_field :balance %>$ 
+  </div>
+  <div class="field">
+    <%= f.label :creation_date %><br />
+    <%= f.date_select :creationDate %>
+  </div>
+  <div class="field">
+    <%= f.label :customer %><br />
+    
+    <select id="bank_account_user_id" name="bank_account[user_id]">
+    <% if @bank_account.user_id == 0 or @bank_account.user_id == nil %>
+      <option value="" selected="selected">- Please select owner -</option>
+    <% end%>
+    <% @users = User.find(:all,:order=>"username") 
+    @users.each do |user| %>
+    <option value="<%= user.id %>" 
+      <% if @bank_account.user_id == user.id %> 
+        selected="selected"
+      <% end %>
+    >
+    <%= user.username %>
+  </option>
+  <% end %>
+    </select>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add Bank Account" %>
+  </div>
+<% end %>

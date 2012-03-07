@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  issueTime: 2012-03-06 20:33:12
+  operationType: MyString
+  amount: 9.99
+  bank_account: 
+
+two:
+  issueTime: 2012-03-06 20:33:12
+  operationType: MyString
+  amount: 9.99
+  bank_account: 

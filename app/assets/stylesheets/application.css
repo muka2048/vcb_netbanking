@@ -1,0 +1,96 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+.bd
+{
+   margin-top:0px;
+  padding-top:0px;
+}
+#main 
+{
+    margin-top:0px;
+    margin-left:auto;
+    margin-right:auto;
+    width:800px;
+}
+
+
+#header 
+{
+    border:solid #E0E0E0 1px;
+    background-color:#EEEEEE;
+    width:800px;
+}
+#navigation 
+{
+    border:solid #E0E0E0 1px;
+    background-color:rgb(230, 224, 219) ;
+    width:800px;
+}
+#menu 
+{
+    border:solid #E0E0E0 1px;
+    background-color:rgb(230, 224, 219) ;
+    height:420px;
+    width:185px;
+    color:rgb(21, 21, 21);
+}
+#content 
+{
+    border:solid #E0E0E0 1px;
+    background-color:#F5F5F5;
+    padding-left:10px;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-left:0px;
+    height:400px;
+    overflow-y:scroll;
+    overflow-x:scroll;
+    width:600px;
+    color:rgb(21, 21, 21);
+}
+#footer 
+{
+    border:solid #E0E0E0 1px;
+    /*background-color:#EEEEEE;*/
+    background: rgb(21, 21, 21);
+    /* color: rgb(230, 224, 219); white */
+    color: rgb(231, 190, 105);
+    width:800px;
+    text-align:center;
+    height:30px;
+    vertical-align:middle;
+    padding-top:10px;
+    
+}
+
+#bcmb 
+{
+    border:solid #E0E0E0 1px;
+    /*background-color:#EEEEEE;*/
+    background: rgb(21, 21, 21);
+    /*color: rgb(230, 224, 219); white*/
+    color: rgb(231, 190, 105);
+    width:800px;
+    text-align:center;
+    height:10px;
+    vertical-align:middle;
+    
+}
+#vcb_banner 
+{
+    border:solid #E0E0E0 1px;
+    padding-top:10px;
+    background: rgb(21, 21, 21);
+    color: rgb(231, 190, 105);
+    width:100%;
+    text-align:left;
+    height:70px;
+    vertical-align:middle;
+    
+}

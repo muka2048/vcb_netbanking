@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Issue Time:</b>
+  <%= @bank_account_operation.issueTime %>
+</p>
+
+<p>
+  <b>Operation Type:</b>
+  <%= @bank_account_operation.operationType %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @bank_account_operation.amount %>
+</p>
+
+<p>
+  <b>Bank account:</b>
+  <% @bank_account = BankAccount.find(@bank_account_operation.bank_account_id) %>
+  <%= @bank_account.bankAccountNo %>
+</p>
+
+ <% if current_user %>
+<%= link_to 'Edit', edit_bank_account_operation_path(@bank_account_operation) %> |
+<% end %>
+<%= link_to 'Back', bank_account_operations_path %>

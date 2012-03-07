@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Bank Account Number</b>
+  <%= @bank_account.bankAccountNo %>
+</p>
+
+<p>
+  <b>Balance:</b>
+  $ <%= @bank_account.balance %>
+</p>
+
+<p>
+  <b>Creation Date:</b>
+  <%= @bank_account.creationDate %>
+</p>
+
+<p>
+  <b>Customer:</b>
+ 
+  <% @user = User.find(@bank_account.user_id) %>
+  <%= @user.username %>
+</p>
+
+<% if current_user %>
+<%= link_to 'Back', bank_accounts_path %>
+<% else %>
+<%= link_to 'Edit', edit_bank_account_path(@bank_account) %> |
+<%= link_to 'Back', bank_accounts_path %>
+<% end %>
