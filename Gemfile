@@ -38,3 +38,5 @@ end
 gem 'pg'
 
 gem 'authlogic'
+
+gem 'mysql2', :group => :production
